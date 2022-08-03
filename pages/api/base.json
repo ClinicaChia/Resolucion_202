@@ -1,0 +1,35 @@
+{
+    "codigos": ["Z316","Z321","Z010","Z001","Z002","Z003","Z008","Z136"],
+
+    "pruebas_micro":["CREATININA EN ORINA",
+        "MICROALBUMINURIA EN ORINA PARCIAL",
+        "RELACION ALBUMINA/CREATINURIA"],
+
+    "examenes_lab": ["GLICEMIA BASAL",
+                        "LDL COLESTEROL",
+                        "HDL COLESTEROL",
+                        "TRIGLICERIDOS",
+                        "HEMOGLOBINA",
+                        "HEMOGLOBINA     :",
+                        "CREATININA",
+                        "PSA TOTAL",
+                        "PSA LIBRE"],
+
+    "posiciones":{
+        "GLICEMIA BASAL":57,
+                        "LDL COLESTEROL":92,
+                        "HDL COLESTEROL":95,
+                        "TRIGLICERIDOS":98,
+                        "HEMOGLOBINA":102,
+                        "HEMOGLOBINA     :": 102,
+                        "CREATININA":107,
+                        "PSA TOTAL":109,
+                        "Mamografia": 97,
+                        "fechaMamografia": 96
+
+                        
+    }
+
+
+    
+}

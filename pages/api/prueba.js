@@ -14,18 +14,18 @@ export const config = {
 
 async function SaveRaR(req) {
   let File = null
-  let Name = ""
+  var Name = ""
 
   await new formidable.IncomingForm().parse(req)
   .on('file', function(name, file) {
        
     
-    Name =  file.filepath.split("\\")[file.filepath.split("\\").length - 1]
+      Name =  file.filepath.split("\\")[file.filepath.split("\\").length - 1]
     
-      fs.copyFile(file.filepath, `E:/paginas web/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err) {
+      fs.copyFile(file.filepath, `E:/paginas_web/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err) {
         if (err) {
           fs.mkdirSync(`./public/files/${req.query.sede}`, { recursive: true });
-          fs.copyFile(file.filepath, `E:/paginas web/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err){
+          fs.copyFile(file.filepath, `E:/paginas_web/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err){
             if (err) {
               throw err;
             }
@@ -45,34 +45,57 @@ async function SaveRaR(req) {
   })
   .on('end', function() {
     
+    
   });
-  return Name;
+  return true
 }
 
-function PythonScript() {
+async function PythonScript(folder,fn,res) {
   
-
-  console.log("pueba");
-
-  const python = spawn('python', ['script1.py']);
-
+  console.log("si")
+  const python = spawn('C:/Users/juansc/AppData/Local/Programs/Python/Python310/python.exe', ['E:/paginas_web/resolucion_202/pages/api/script.py', folder,fn]);
+  var dataToSend = "";
   python.stdout.on('data', function (data) {
-      console.log('Pipe data from python script ...');
-      dataToSend = data.toString();
+    console.log('Pipe data from python script ...');
+    dataToSend = data.toString()
+    console.log(dataToSend)
+  });
+
+  python.stderr.on('data', (data) => {
+    console.error(data.toString())
+    return false
+});
+
+  python.on('close', (code) => {
+    fs.readdirSync(`./public/files/${folder}`).forEach(file => {
+      fs.unlinkSync(`./public/files/${folder}/${file}`);})
+
+      res.status(200).json("Archivo creado correctamente")
+
+    return true
     });
 
-    python.on('close', (code) => {
-      console.log(`child process close all stdio with code ${code}`);
-      
-      console.log(dataToSend);
-
-      });
   
+
 }
 export default async function handler(req, res) {
 
   const file_path= await SaveRaR(req)
+  let cod = 200
+  let msg = "Archivo subido correctamente"
+  if(file_path){
+    console.log("si entro")
+    //zip.extractAllTo("./",true)
 
+     PythonScript(req.query.sede,req.query.fn,res)
+    
+  }
+  else{
+    cod = 500
+    msg = "Error al subir el archivo"
+    res.status(cod).json(msg)
+  }
   
-  res.status(200).json("Archivo subido correctamente")
+
 }
+  

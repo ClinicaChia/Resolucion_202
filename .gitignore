@@ -12,6 +12,7 @@
 /.next/
 /out/
 public/files/*
+public/listos/*
 # production
 /build
 
