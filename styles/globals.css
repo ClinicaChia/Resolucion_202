@@ -2,25 +2,130 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+  font-family: Kdam Thmor Pro, sans-serif;
   box-sizing: border-box;
+  background-color: snow;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+:root{
+  --primary: darkblue;
+  --secondary: gold;
+  --tertiary: #229954 ;
+}
+
+.container{
+  width: 80%;
+  margin-left: 10%;
+  height: 85vh;
+  
+}
+
+h1{
+  color: var(--primary);
+  text-align: center;
+}
+
+.row{
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btns{
+  width: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.row select{
+  width: 40%;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+input[type=file]{
+
+  display: none;
+}
+
+.File{
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+  transition: all 0.3s ease-in-out;
+}
+.File:hover{
+  background-color: var(--secondary);
+  color: white;
+}
+
+.Update{
+  width: 150px;
+  height: 36px;
+  font-size: 16px;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--tertiary);
+  color: var(--tertiary);
+  transition: all 0.3s ease-in-out;
+}
+.Update:hover{
+  background-color: var(--tertiary);
+  color: white;
+}
+
+
+table{
+  margin-top: 50px;
+  width: 100%;
+}
+
+
+.send{
+  width: 150px;
+  height: 36px;
+  font-size: 16px;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--primary);
+  color: var(--primary);
+  transition: all 0.3s ease-in-out;
+}
+.send:hover{
+  background-color: var(--primary);
+  color: white;
+}
+
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid var(--primary);
 }
