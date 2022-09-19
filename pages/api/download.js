@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 
   //send file to client
   const {sede} = req.query
-  console.log(sede)
   const filePath = path.resolve('.', `public/listos/${sede}.xlsx`)
   const fileBuffer = fs.readFileSync(filePath)
   res.setHeader('Content-Type', 

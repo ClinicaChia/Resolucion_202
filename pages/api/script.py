@@ -2,12 +2,6 @@ import sys
 import json
 import pandas as pd
 
-
-def progess_bar(i, n):
-    percent = (i / n) * 100
-    bar = '#' * int(percent) + ' ' * int(100 - percent)
-    print(f"\r{bar} {percent:.2f}%", end='\r')
-    
     
 def search(lista,match):
     for el in lista:
@@ -16,9 +10,8 @@ def search(lista,match):
     return False
 
 
-print("Cargando datos...")
 
-path = "E:\\paginas_web\\resolucion_202\\public\\files\\"+sys.argv[1]+"\\"
+path = "F:\\resolucion_202\\public\\files\\"+sys.argv[1]+"\\"
 sede = sys.argv[1]
 fn = sys.argv[2]
 
@@ -35,7 +28,7 @@ ExamnenesMicro = pd.read_excel( path + 'Micros.xlsx')
 Mamografias = pd.read_excel( path + 'Mamografias.xls')
 historia = pd.read_excel( path + 'Historia_Clinica.xlsx')
 validador = pd.read_excel( path + 'validador.xlsx')
-f = open('E:\\paginas_web\\resolucion_202\\pages\\api\\base.json')
+f = open('F:\\resolucion_202\\pages\\api\\base.json')
 db = json.load(f)
 f.close()
 examenes_lab = db['examenes_lab']
@@ -49,7 +42,7 @@ for grupo_nombre in codigos:
     grupo = detalleOrdenamiento[detalleOrdenamiento['cod_dia'] == grupo_nombre]
     total = grupo.shape[0]
     for index, row in grupo.iterrows(): #Se recorre el detalle de ordenamiento
-        progess_bar(i, total)
+        
         i+=1
         temp = ExamenesLab[ExamenesLab['Historia'] == row['id_usr']] #Se extraen las filas que conincidan con la cedula
         temp2={}
@@ -156,7 +149,7 @@ for paciente in pacientes:
 
 
 
-validador.to_excel('E:\\paginas_web\\resolucion_202\\public\\listos\\'+ sede + '.xlsx',index = False)
+validador.to_excel('F:\\resolucion_202\\public\\listos\\'+ sede + '.xlsx',index = False)
 
 
 
