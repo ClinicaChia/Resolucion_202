@@ -10,10 +10,13 @@ def search(lista,match):
     return False
 
 
-
-path = "F:\\resolucion_202\\public\\files\\"+sys.argv[1]+"\\"
+json_file_path = sys.argv[3]
+base_script_path = sys.argv[4]
+ready_path = sys.argv[5]
+path = base_script_path+sys.argv[1]+"\\"
 sede = sys.argv[1]
 fn = sys.argv[2]
+
 
 import zipfile
 with zipfile.ZipFile(path+fn, 'r') as zip_ref:
@@ -28,7 +31,7 @@ ExamnenesMicro = pd.read_excel( path + 'Micros.xlsx')
 Mamografias = pd.read_excel( path + 'Mamografias.xls')
 historia = pd.read_excel( path + 'Historia_Clinica.xlsx')
 validador = pd.read_excel( path + 'validador.xlsx')
-f = open('F:\\resolucion_202\\pages\\api\\base.json')
+f = open(json_file_path)
 db = json.load(f)
 f.close()
 examenes_lab = db['examenes_lab']
@@ -149,7 +152,7 @@ for paciente in pacientes:
 
 
 
-validador.to_excel('F:\\resolucion_202\\public\\listos\\'+ sede + '.xlsx',index = False)
+validador.to_excel(ready_path+ sede + '.xlsx',index = False)
 
 
 

@@ -22,10 +22,10 @@ async function SaveRaR(req) {
     
       Name =  file.filepath.split("\\")[file.filepath.split("\\").length - 1]
     
-      fs.copyFile(file.filepath, `F:/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err) {
+      fs.copyFile(file.filepath, `${process.env.BASE_FILES}${req.query.sede}/${req.query.fn}`, function (err) {
         if (err) {
           fs.mkdirSync(`./public/files/${req.query.sede}`, { recursive: true });
-          fs.copyFile(file.filepath, `F:/resolucion_202/public/files/${req.query.sede}/${req.query.fn}`, function (err){
+          fs.copyFile(file.filepath, `${process.env.BASE_FILES}${req.query.sede}/${req.query.fn}`, function (err){
             if (err) {
               throw err;
             }
@@ -53,7 +53,10 @@ async function SaveRaR(req) {
 async function PythonScript(folder,fn,res) {
   
  
-  const python = spawn('python', ['F:/resolucion_202/pages/api/script.py', folder,fn]);
+  const python = spawn('python', [process.env.PHYTON_SCRIPT_FILE,
+                                  folder,fn,process.env.JSON_FILE_PATH,
+                                  process.env.BASE_SCRIPT_PATH,
+                                  process.env.READY_PATH]);
   var dataToSend = "";
   python.stdout.on('data', function (data) {
  
